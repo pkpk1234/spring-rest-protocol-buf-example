@@ -1,8 +1,7 @@
-package com.example.jpa.mapping.controller;
+package com.example.protocolbuf.controller;
 
-import com.example.jpa.mapping.repository.ProductRepository;
+import com.example.protocolbuf.repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**

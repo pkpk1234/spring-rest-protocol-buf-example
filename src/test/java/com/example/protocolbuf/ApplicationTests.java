@@ -1,10 +1,10 @@
-package com.example.jpa.mapping;
+package com.example.protocolbuf;
 
-import com.example.jpa.mapping.repository.ProductRepository;
-import com.example.jpa.mapping.store.Company;
-import com.example.jpa.mapping.store.Image;
-import com.example.jpa.mapping.store.Product;
-import com.example.jpa.mapping.store.WarehouseProductInfo;
+import com.example.protocolbuf.repository.ProductRepository;
+import com.example.protocolbuf.store.Company;
+import com.example.protocolbuf.store.Image;
+import com.example.protocolbuf.store.Product;
+import com.example.protocolbuf.store.WarehouseProductInfo;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.Test;
 import org.junit.runner.RunWith;

@@ -1,9 +1,9 @@
-package com.example.jpa.mapping;
+package com.example.protocolbuf;
 
-import com.example.jpa.mapping.repository.CompanyRepository;
-import com.example.jpa.mapping.repository.ImporterRepository;
-import com.example.jpa.mapping.repository.ProductRepository;
-import com.example.jpa.mapping.store.*;
+import com.example.protocolbuf.repository.CompanyRepository;
+import com.example.protocolbuf.repository.ImporterRepository;
+import com.example.protocolbuf.repository.ProductRepository;
+import com.example.protocolbuf.store.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;

@@ -1,0 +1,8 @@
+syntax = "proto3";
+package example;
+
+option java_package = "com.example.protocolbuf";
+option java_outer_classname = "CompanyProto";
+message Company {
+    string name = 1;
+}

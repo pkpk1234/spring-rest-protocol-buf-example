@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jpa.mapping.store;
+package com.example.protocolbuf.store;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;

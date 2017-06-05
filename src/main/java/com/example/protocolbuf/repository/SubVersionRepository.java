@@ -1,6 +1,6 @@
-package com.example.jpa.mapping.repository;
+package com.example.protocolbuf.repository;
 
-import com.example.jpa.mapping.store.Product;
+import com.example.protocolbuf.store.SubVersion;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository;
  * Created by pkpk1234 on 2017/6/3.
  */
 @Repository
-public interface ProductRepository extends JpaRepository<Product, Long> {
+public interface SubVersionRepository extends JpaRepository<SubVersion,Long> {
 }

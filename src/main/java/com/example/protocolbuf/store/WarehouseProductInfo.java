@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jpa.mapping.store;
+package com.example.protocolbuf.store;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -22,49 +22,49 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import javax.persistence.Version;
 
 @Entity
 @NoArgsConstructor
-public class SubVersion {
+public class WarehouseProductInfo {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String code;
+    private int quantity;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private MainVersion version;
+    @OneToOne(fetch = FetchType.EAGER)
+    @PrimaryKeyJoinColumn
+    private Product product;
 
-    public SubVersion(String code) {
-        this.code = code;
+    public WarehouseProductInfo(int quantity) {
+        this.quantity = quantity;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getCode() {
-        return code;
+    public int getQuantity() {
+        return quantity;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 
-    public MainVersion getVersion() {
-        return version;
+    public Product getProduct() {
+        return product;
     }
 
-    public void setVersion(MainVersion version) {
-        this.version = version;
+    public void setProduct(Product product) {
+        this.product = product;
     }
 
     @Override
     public int hashCode() {
         HashCodeBuilder hcb = new HashCodeBuilder();
-        hcb.append(getCode());
+        hcb.append(product);
         return hcb.toHashCode();
     }
 
@@ -73,12 +73,12 @@ public class SubVersion {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof SubVersion)) {
+        if (!(obj instanceof WarehouseProductInfo)) {
             return false;
         }
-        SubVersion that = (SubVersion) obj;
+        WarehouseProductInfo that = (WarehouseProductInfo) obj;
         EqualsBuilder eb = new EqualsBuilder();
-        eb.append(getCode(), that.getCode());
+        eb.append(product, that.getProduct());
         return eb.isEquals();
     }
 
@@ -86,7 +86,8 @@ public class SubVersion {
     public String toString() {
         ToStringBuilder tsb = new ToStringBuilder(this);
         tsb.append("id", id);
-        tsb.append("code", getCode());
+        tsb.append("name", quantity);
+        tsb.append("product", product);
         return tsb.toString();
     }
 }

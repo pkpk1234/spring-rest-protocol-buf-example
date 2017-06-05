@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.jpa.mapping.store;
+package com.example.protocolbuf.store;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang.builder.EqualsBuilder;
@@ -22,78 +22,48 @@ import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
 import javax.persistence.*;
-import java.util.LinkedHashSet;
-import java.util.Set;
 
 @Entity
 @NoArgsConstructor
-public class MainVersion {
+public class SubVersion {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column
-    private String type;
+    private String code;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    private Image image;
+    private MainVersion version;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "version", orphanRemoval = true)
-    private Set<SubVersion> subVersions = new LinkedHashSet<SubVersion>();
+    public SubVersion(String code) {
+        this.code = code;
+    }
 
     public Long getId() {
         return id;
     }
 
-    public MainVersion(String type, Image image) {
-        this.type = type;
-        this.image = image;
+    public String getCode() {
+        return code;
     }
 
-    public MainVersion(String type) {
-        this.type = type;
+    public void setCode(String code) {
+        this.code = code;
     }
 
-    public String getType() {
-        return type;
+    public MainVersion getVersion() {
+        return version;
     }
 
-    public void setType(String type) {
-        this.type = type;
-    }
-
-    public Image getImage() {
-        return image;
-    }
-
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    public Set<SubVersion> getSubVersions() {
-        return subVersions;
-    }
-
-    public void setSubVersions(Set<SubVersion> subVersions) {
-        this.subVersions = subVersions;
-    }
-
-    public void addSubVersion(SubVersion subVersion) {
-        subVersions.add(subVersion);
-        subVersion.setVersion(this);
-    }
-
-    public void removeSubVersion(SubVersion subVersion) {
-        subVersions.remove(subVersion);
-        subVersion.setVersion(null);
+    public void setVersion(MainVersion version) {
+        this.version = version;
     }
 
     @Override
     public int hashCode() {
         HashCodeBuilder hcb = new HashCodeBuilder();
-        hcb.append(type);
-        hcb.append(image);
+        hcb.append(getCode());
         return hcb.toHashCode();
     }
 
@@ -102,13 +72,12 @@ public class MainVersion {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof MainVersion)) {
+        if (!(obj instanceof SubVersion)) {
             return false;
         }
-        MainVersion that = (MainVersion) obj;
+        SubVersion that = (SubVersion) obj;
         EqualsBuilder eb = new EqualsBuilder();
-        eb.append(type, that.getType());
-        eb.append(image, that.getImage());
+        eb.append(getCode(), that.getCode());
         return eb.isEquals();
     }
 
@@ -116,8 +85,7 @@ public class MainVersion {
     public String toString() {
         ToStringBuilder tsb = new ToStringBuilder(this);
         tsb.append("id", id);
-        tsb.append("type", type);
-        tsb.append("image", image);
+        tsb.append("code", getCode());
         return tsb.toString();
     }
 }

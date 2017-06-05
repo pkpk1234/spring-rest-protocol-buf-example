@@ -14,57 +14,48 @@
  * limitations under the License.
  */
 
-package com.example.jpa.mapping.store;
+package com.example.protocolbuf.store;
 
 import lombok.NoArgsConstructor;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 import org.apache.commons.lang.builder.ToStringBuilder;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Entity
 @NoArgsConstructor
-public class WarehouseProductInfo {
+public class Importer {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private int quantity;
-
-    @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
-    private Product product;
-
-    public WarehouseProductInfo(int quantity) {
-        this.quantity = quantity;
-    }
+    private String name;
 
     public Long getId() {
         return id;
     }
 
-    public int getQuantity() {
-        return quantity;
+    public String getName() {
+        return name;
     }
 
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
+    public Importer(String name) {
+        this.name = name;
     }
 
     @Override
     public int hashCode() {
         HashCodeBuilder hcb = new HashCodeBuilder();
-        hcb.append(product);
+        hcb.append(name);
         return hcb.toHashCode();
     }
 
@@ -73,12 +64,12 @@ public class WarehouseProductInfo {
         if (this == obj) {
             return true;
         }
-        if (!(obj instanceof WarehouseProductInfo)) {
+        if (!(obj instanceof Importer)) {
             return false;
         }
-        WarehouseProductInfo that = (WarehouseProductInfo) obj;
+        Importer that = (Importer) obj;
         EqualsBuilder eb = new EqualsBuilder();
-        eb.append(product, that.getProduct());
+        eb.append(name, that.getName());
         return eb.isEquals();
     }
 
@@ -86,8 +77,7 @@ public class WarehouseProductInfo {
     public String toString() {
         ToStringBuilder tsb = new ToStringBuilder(this);
         tsb.append("id", id);
-        tsb.append("name", quantity);
-        tsb.append("product", product);
+        tsb.append("name", name);
         return tsb.toString();
     }
 }

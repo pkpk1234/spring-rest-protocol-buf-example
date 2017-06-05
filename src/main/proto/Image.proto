@@ -1,0 +1,9 @@
+syntax = "proto3";
+package example;
+
+option java_package = "com.example.protocolbuf";
+option java_outer_classname = "ImageProto";
+message Image {
+    string name = 1;
+    int32 index = 2;
+}

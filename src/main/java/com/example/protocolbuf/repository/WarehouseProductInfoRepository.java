@@ -1,6 +1,6 @@
-package com.example.jpa.mapping.repository;
+package com.example.protocolbuf.repository;
 
-import com.example.jpa.mapping.store.WarehouseProductInfo;
+import com.example.protocolbuf.store.WarehouseProductInfo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
