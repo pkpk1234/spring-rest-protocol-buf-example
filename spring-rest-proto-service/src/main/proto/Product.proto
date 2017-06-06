@@ -14,7 +14,7 @@ message Product {
     string code = 2;
     int32 quantity = 3;
     Company company = 4;
-    Image image = 5;
+    repeated Image image = 5;
     Importer importer = 6;
     WarehouseProductInfo warehouseProductInfo = 7;
 }
