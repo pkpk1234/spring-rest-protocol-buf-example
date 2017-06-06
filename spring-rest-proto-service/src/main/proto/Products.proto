@@ -1,0 +1,12 @@
+syntax = "proto3";
+package example;
+
+import "Product.proto";
+
+option java_package = "com.example.protocolbuf";
+option java_outer_classname = "ProductsProto";
+
+message Products {
+    repeated Product products = 1;
+}
+

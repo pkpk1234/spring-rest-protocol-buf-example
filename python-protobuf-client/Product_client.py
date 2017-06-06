@@ -6,10 +6,18 @@
     3. import http and proto lib, send http request to service, and parse to string
 '''
 import Product_pb2
+import Products_pb2
 import urllib
 if __name__ == '__main__':
     product = Product_pb2.Product()
     product_read = urllib.urlopen("http://localhost:8080/firstprod").read()
-
     product.ParseFromString(product_read)
+    print "first product:"
     print product
+
+    products = Products_pb2.Products()
+    products_read = urllib.urlopen("http://localhost:8080/products").read()
+    products.ParseFromString(products_read)
+    print "all products:"
+    print products
+

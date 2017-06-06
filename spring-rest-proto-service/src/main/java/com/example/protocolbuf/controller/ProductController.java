@@ -1,9 +1,6 @@
 package com.example.protocolbuf.controller;
 
-import com.example.protocolbuf.CompanyProto;
-import com.example.protocolbuf.ImageProto;
-import com.example.protocolbuf.ImporterProto;
-import com.example.protocolbuf.ProductProto;
+import com.example.protocolbuf.*;
 import com.example.protocolbuf.repository.ProductRepository;
 import com.example.protocolbuf.store.Image;
 import com.example.protocolbuf.store.Product;
@@ -35,11 +32,13 @@ public class ProductController {
     }
 
     @GetMapping("/products")
-    public List<ProductProto.Product> getAllProducts() {
+    public ProductsProto.Products getAllProducts() {
         Collection<Product> products = this.productRepository.findAll();
+        ProductsProto.Products.Builder productsBuilder = ProductsProto.Products.newBuilder();
         List<ProductProto.Product> result = new ArrayList<>(products.size());
         prepareProtoProduct(products, result);
-        return result;
+        productsBuilder.addAllProducts(result);
+        return productsBuilder.build();
     }
 
     private void prepareProtoProduct(Collection<Product> products, List<ProductProto.Product> result) {
